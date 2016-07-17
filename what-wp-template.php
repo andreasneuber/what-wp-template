@@ -16,7 +16,7 @@ class What_WP_Template{
 
 
     function __construct() {
-        add_action( 'wp_footer',array( $this, 'display_template_var' ) );
+        add_action( 'wp_footer', array( $this, 'display_template_var_in_wp_footer' ) );
     }
 
     function display_config(){
@@ -27,7 +27,7 @@ class What_WP_Template{
         return $cfg;
     }
 
-    function display_template_var() {
+    function display_template_var_in_wp_footer() {
         global $template;
         $cfg = $this->display_config();
         echo "<{$cfg['text_size']} style='margin:20px; color: {$cfg['text_color']}'>" . $template . "</{$cfg['text_size']}>";
