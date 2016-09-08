@@ -27,7 +27,18 @@ class What_WP_Template{
 	    $text_color = esc_attr( get_option('what-wp-template_text-color-dd') );
 	    $text_size  = esc_attr( get_option('what-wp-template_text-size-dd') );
 
+        $text_color = $this->set_default_value_if_needed( $text_color, 'red' );
+        $text_size  = $this->set_default_value_if_needed( $text_size, 'h1' );
+
         echo "<{$text_size} style='margin:20px; color: {$text_color}'>" . $template . "</{$text_size}>";
+    }
+
+
+    function set_default_value_if_needed( $var, $default_val ){
+        if( strlen( $var ) < 1 ){
+            $var = $default_val;
+        }
+        return $var;
     }
 
 
