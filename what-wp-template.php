@@ -16,25 +16,25 @@ class What_WP_Template{
 
 
     function __construct() {
-        add_action( 'wp_footer', array( $this, 'display_template_var_in_wp_footer' ) );
-	    add_action( 'admin_menu', array( $this, 'add_template_var_config_menu' ) );
-	    add_action( 'admin_init', array( $this, 'register_what_wp_template_settings' ) );
+        add_action( 'wp_footer', array( $this, 'wwtemp_display_template_var_in_wp_footer' ) );
+	    add_action( 'admin_menu', array( $this, 'wwtemp_add_template_var_config_menu' ) );
+	    add_action( 'admin_init', array( $this, 'wwtemp_register_what_wp_template_settings' ) );
     }
 
 
-    function display_template_var_in_wp_footer() {
+    function wwtemp_display_template_var_in_wp_footer() {
         global $template;
 	    $text_color = esc_attr( get_option('what-wp-template_text-color-dd') );
 	    $text_size  = esc_attr( get_option('what-wp-template_text-size-dd') );
 
-        $text_color = $this->set_default_value_if_needed( $text_color, 'red' );
-        $text_size  = $this->set_default_value_if_needed( $text_size, 'h1' );
+        $text_color = $this->wwtemp_set_default_value_if_needed( $text_color, 'red' );
+        $text_size  = $this->wwtemp_set_default_value_if_needed( $text_size, 'h1' );
 
         echo "<{$text_size} style='margin:20px; color: {$text_color}'>" . $template . "</{$text_size}>";
     }
 
 
-    function set_default_value_if_needed( $var, $default_val ){
+    function wwtemp_set_default_value_if_needed( $var, $default_val ){
         if( strlen( $var ) < 1 ){
             $var = $default_val;
         }
@@ -42,20 +42,20 @@ class What_WP_Template{
     }
 
 
-	function add_template_var_config_menu() {
+	function wwtemp_add_template_var_config_menu() {
 
 		add_options_page(
 			'Template Var Display',
 			'Template Var Display',
 			'manage_options',
 			'what-wp-template',
-			array( $this, 'display_template_var_config_page' )
+			array( $this, 'wwtemp_display_template_var_config_page' )
 		);
 
 	}
 
 
-	function display_template_var_config_page() {
+	function wwtemp_display_template_var_config_page() {
 		?>
 		<div class="wrap">
 			<div id="icon-plugins" class="icon32"></div>
@@ -124,7 +124,7 @@ class What_WP_Template{
 	}
 
 
-	function register_what_wp_template_settings() {
+	function wwtemp_register_what_wp_template_settings() {
 		register_setting( 'myoption-group', 'what-wp-template_text-color-dd' );
 		register_setting( 'myoption-group', 'what-wp-template_text-size-dd' );
 	}
