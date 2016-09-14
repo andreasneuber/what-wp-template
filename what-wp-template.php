@@ -27,18 +27,7 @@ class What_WP_Template{
 	    $text_color = esc_attr( get_option('what-wp-template_text-color-dd') );
 	    $text_size  = esc_attr( get_option('what-wp-template_text-size-dd') );
 
-        $text_color = $this->wwtemp_set_default_value_if_needed( $text_color, 'red' );
-        $text_size  = $this->wwtemp_set_default_value_if_needed( $text_size, 'h1' );
-
         echo "<{$text_size} style='margin:20px; color: {$text_color}'>" . $template . "</{$text_size}>";
-    }
-
-
-    function wwtemp_set_default_value_if_needed( $var, $default_val ){
-        if( strlen( $var ) < 1 ){
-            $var = $default_val;
-        }
-        return $var;
     }
 
 
@@ -129,6 +118,13 @@ class What_WP_Template{
 		register_setting( 'myoption-group', 'what-wp-template_text-size-dd' );
 	}
 
+
+	static function wwtemp_set_default_values_on_activation(){
+		add_option( 'what-wp-template_text-color-dd', 'red');
+		add_option( 'what-wp-template_text-size-dd', 'h1');
+	}
+
 }
+register_activation_hook( __FILE__, array( 'What_WP_Template', 'wwtemp_set_default_values_on_activation' ) );
 
 $what_wp_template = new What_WP_Template();
