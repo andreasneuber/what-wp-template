@@ -15,20 +15,20 @@
 class What_WP_Template{
 
 
-    function __construct() {
-        add_action( 'wp_footer', array( $this, 'wwtemp_display_template_var_in_wp_footer' ) );
-	    add_action( 'admin_menu', array( $this, 'wwtemp_add_template_var_config_menu' ) );
-	    add_action( 'admin_init', array( $this, 'wwtemp_register_what_wp_template_settings' ) );
-    }
+	function __construct() {
+		add_action( 'wp_footer', array( $this, 'wwtemp_display_template_var_in_wp_footer' ) );
+		add_action( 'admin_menu', array( $this, 'wwtemp_add_template_var_config_menu' ) );
+		add_action( 'admin_init', array( $this, 'wwtemp_register_what_wp_template_settings' ) );
+	}
 
 
-    function wwtemp_display_template_var_in_wp_footer() {
-        global $template;
-	    $text_color = esc_attr( get_option('what-wp-template_text-color-dd') );
-	    $text_size  = esc_attr( get_option('what-wp-template_text-size-dd') );
+	function wwtemp_display_template_var_in_wp_footer() {
+		global $template;
+		$text_color = esc_attr( get_option('what-wp-template_text-color-dd') );
+		$text_size  = esc_attr( get_option('what-wp-template_text-size-dd') );
 
-        echo "<{$text_size} style='margin:20px; color: {$text_color}'>" . $template . "</{$text_size}>";
-    }
+		echo "<{$text_size} style='margin:20px; color: {$text_color}'>" . $template . "</{$text_size}>";
+	}
 
 
 	function wwtemp_add_template_var_config_menu() {
@@ -76,8 +76,8 @@ class What_WP_Template{
 				<table class="form-table">
 
 					<tr valign="top">
-			        <th scope="row">Text Color</th>
-			        <td>
+					<th scope="row">Text Color</th>
+					<td>
 						<select name="what-wp-template_text-color-dd">
 							<?php
 								foreach( $text_colors as $color_key => $color_label ){
@@ -86,11 +86,11 @@ class What_WP_Template{
 								}
 							?>
 						</select>
-			        </td>
-			        </tr>
+					</td>
+					</tr>
 					<tr valign="top">
-			        <th scope="row">Text Size</th>
-			        <td>
+					<th scope="row">Text Size</th>
+					<td>
 						<select name="what-wp-template_text-size-dd">
 							<?php
 							foreach( $text_sizes as $size_key => $size_label ){
@@ -99,10 +99,10 @@ class What_WP_Template{
 							}
 							?>
 						</select>
-			        </td>
-			        </tr>
+					</td>
+					</tr>
 
-			    </table>
+				</table>
 
 				<?php
 					submit_button();

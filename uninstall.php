@@ -1,6 +1,6 @@
 <?php
 if (!defined('WP_UNINSTALL_PLUGIN')) {
-    die;
+	die;
 }
 
 delete_option( 'what-wp-template_text-color-dd' );
