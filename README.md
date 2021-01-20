@@ -10,8 +10,8 @@ A WordPress installation.
 - Activate plugin
 
 ## Installation - Linux terminal
-- $ cd /path/to/wp-content/plugins
-- $ git clone https://github.com/andreasneuber/what-wp-template.git
+- `cd /path/to/wp-content/plugins`
+- `git clone https://github.com/andreasneuber/what-wp-template.git`
 - Go to "Plugins" and activate plugin
 
 ## Usage
